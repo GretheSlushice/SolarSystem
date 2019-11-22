@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en-US">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Coding Template</title>
@@ -8,20 +9,85 @@
 </head>
 
 <body>
-  
-  <div class="content">
-    <div class="row">
-      <div class="col-sm-2">
-        <h1>Star size</h1>
-        <input type="range">
+  <div id="navObjects">
+    <div class="btn-group">
+      <div id="planets" class="btn-group btn-group-toggle" data-toggle="buttons">
       </div>
-      <div class="col-sm-8">
-        <canvas class="content content-fluid" id="content"></canvas>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label id="addNew" class="container">
+          <div class="container">
+            <input class="btn btn-success" style="margin-top: 50%;" name="options" autocomplete="off" type="submit" value="Add Planet">
+          </div>
+        </label>
+      </div>
+    </div>
+
+
+    <div id="starAtt" class="container">
+      <div class="row attributes">
+        <div class="slidecontainer col-sm-12">
+          <p>Radius</p>
+          <p id="StarSizeOutput"></p>
+          <input type="range" class="slider" id="starSize">
+        </div>
+      </div>
+
+    </div>
+    <div id="objectAtt" class="container">
+      <select id="planetType">
+        <option value="earth">Earth</option>
+        <option value="ice">Ice</option>
+        <option value="rock">Rock</option>
+        <option value="gas">Gas</option>
+      </select>
+      <div class="row attributes">
+        <div class="slidecontainer col-sm-3">
+          <p>Radius</p>
+          <p id="SizeOutput"></p>
+          <input type="range" class="slider" id="planetSize">
+        </div>
+        <div class="slidecontainer col-sm-3">
+          <p>Aphelion</p>
+          <p id="AphOutput"></p>
+          <input type="range" class="slider" id="planetAph">
+        </div>
+        <div class="slidecontainer col-sm-3">
+          <p>Perihelion</p>
+          <p id="PerOutput"></p>
+          <input type="range" class="slider" id="planetPer">
+        </div>
+        <div class="slidecontainer col-sm-3">
+          <p>Orbit rotation</p>
+          <p id="RotOutput"></p>
+          <input type="range" class="slider" id="orbitRot">
+        </div>
       </div>
     </div>
   </div>
-  
-    
+  <button type="button" class="collapsible"><img id="expand"></button>
+
+  <canvas class="content content-fluid" id="content"></canvas>
+
+  <div style="display: none;">
+    <!-- <img src="http://pngimg.com/uploads/earth/earth_PNG39.png" id="earth" class="rounded float-left image"
+      alt="Earth Planet"> -->
+    <img src="" id="earth" class="rounded float-left image" alt="Earth Planet">
+    <img src="" id="gas" class="rounded float-left image" alt="Gas Planet">
+    <img src="" id="ice" class="rounded float-left image" alt="Ice Planet">
+    <img src="" id="rock" class="rounded float-left image" alt="Rock Planet">
+    <img src="" id="sun" class="rounded float-left image" alt="Sun">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
   <script src="bundle.js"></script>
 </body>
+
 </html>

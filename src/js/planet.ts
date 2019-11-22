@@ -9,14 +9,18 @@ export class Planet implements Object {
     public pos: Vector;
     private satellites: Satelite[];
     private orbit: Orbit;
-    private rotation: number;
+    public rotation: number;
     private dist: number;
     private velocity: Vector;
     private direction: Vector;
     private angle: number;
+    public type: string;
+    public name: string;
 
-    constructor(radius: number, starPos: Vector, per: number, aph: number, rotation: number) 
+    constructor(radius: number, starPos: Vector, per: number, aph: number, rotation: number, type: string, name: string) 
     {
+        this.type = type;
+        this.name = name;
         this.velocity = new Vector(0,0);
         
         this.orbit = new Orbit(per, aph, starPos);
@@ -31,28 +35,34 @@ export class Planet implements Object {
 
     public draw(ctx: CanvasRenderingContext2D, alpha: number, starPos: Vector): void
     {
-        this.orbit.draw(ctx, alpha, starPos, this.pos, this.rotation);
-
+        
         ctx.translate(starPos.x, starPos.y);
         ctx.rotate(this.rotation * Math.PI / 180);
         ctx.translate(-starPos.x, -starPos.y);
 
-        ctx.beginPath();            
-        ctx.ellipse(starPos.x + this.pos.x * alpha, starPos.y + this.pos.y * alpha, this.radius * alpha, this.radius * alpha, 0, 0, Math.PI * 2);
+        // ctx.beginPath();            
+        // ctx.ellipse(starPos.x + this.pos.x * alpha, starPos.y + this.pos.y * alpha, this.radius * alpha, this.radius * alpha, 0, 0, Math.PI * 2);
+        // ctx.fillStyle = 'black';
+        // ctx.fill();  
+        
+        let image = <HTMLImageElement> document.getElementById(this.type);
+        ctx.drawImage(image, starPos.x + (this.pos.x - this.radius) * alpha, starPos.y + (this.pos.y - this.radius) * alpha, 2*this.radius * alpha, 2* this.radius * alpha);
 
         ctx.translate(starPos.x, starPos.y);
         ctx.rotate(-this.rotation * Math.PI / 180);
-        ctx.translate(-starPos.x, -starPos.y);
+        ctx.translate(-starPos.x, -starPos.y);                  
+    }
 
-        ctx.fillStyle = 'black';
-        ctx.fill();
-            
+    public drawOrbit(ctx: CanvasRenderingContext2D, alpha: number, starPos: Vector): void
+    {
+        this.orbit.draw(ctx, alpha, starPos, this.pos, this.rotation);
     }
 
     public update(time: number, starPos: Vector, alpha: number): void
     {
+        let speed = 5;
         this.dist = this.orbit.calcDist(new Vector(starPos.x + this.pos.x, starPos.y - this.pos.y), starPos);
-        let angleOffset = 1/(this.dist) * time/1000;
+        let angleOffset = (speed/(Math.pow(this.dist,2)) * time/1000);
 
 
         this.angle += angleOffset;

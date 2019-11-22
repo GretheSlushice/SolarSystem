@@ -9,10 +9,12 @@ export class Orbit
     public fociConstant: number;
     public semiLatusRectum: number;
     public eccentricity: number;
+    public starPos: Vector;
     private orbitOrigo: Vector
 
     constructor(per: number, aph: number, starPos: Vector)
     {
+        this.starPos = starPos;
         this.perihelion = per;
         this.aphelion = aph;
         this.eccentricity = this.calcEccentricity();
@@ -23,15 +25,20 @@ export class Orbit
     }
 
     public draw(ctx: CanvasRenderingContext2D, alpha: number, starPos: Vector, planetPos: Vector, rotation: number): void
-    {        
+    {    
+        this.major = this.calcMajor();
+        this.minor = this.calcMinor();
+        this.eccentricity = this.calcEccentricity();
+        this.fociConstant = this.calcFociConstant();
+
         ctx.translate(starPos.x, starPos.y);
         ctx.rotate(rotation * Math.PI / 180);
         ctx.translate(-starPos.x, -starPos.y);
 
-        ctx.beginPath();
+        ctx.beginPath();        
         this.orbitOrigo = new Vector(starPos.x + this.fociConstant * alpha, starPos.y)
         ctx.ellipse(starPos.x + this.fociConstant * alpha, starPos.y, this.major * alpha, this.minor * alpha, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = "grey";
         ctx.stroke();
 
         ctx.translate(starPos.x, starPos.y);

@@ -1,15 +1,106 @@
 $fontColor: #0091aa;
 $colorHeading: #be4a14;
-#content  // div with id: content
+body
 {
-    color: $fontColor;
+    background-image: url('http://pluspng.com/img-png/png-night-sky-file-night-stars-berlin-png-6040.png');
+    background-size: 800px;
 }
 
-h2
+.collapsible
 {
-    color: $colorHeading;
+    background-color:rgb(44, 43, 43);
+    position: relative;
+    outline: none;
+    width: 100%;
+    border: none;
+}
+.collapsible:hover 
+{
+    background-color: rgb(22, 21, 21);
+}
+.image 
+{
+    height: 100px;
+}
+.choosePlanet
+{
+    background: grey;
 }
 
-h1{
-    @extend h2;
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 50%; /* Full-width */
+    height: 20px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 20px;
+    background: rgb(0, 0, 0); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+.attributes
+{
+    width: 100%;
+    padding: 10px;
+}
+
+.name
+{
+    text-align: center;
+}
+
+#navObjects
+{
+    position: relative;
+    background-color: grey;
+    display: block;
+    overflow: hidden;
+    opacity: 90%;
+    width: 100%;
+}
+#objectAtt
+{
+    position: relative;
+    background-color: grey;
+    display: none;
+    overflow: hidden;
+    width: 100%;
+}
+#starAtt
+{
+    position: relative;
+    background-color: grey;
+    display: none;
+    overflow: hidden;
+    opacity: 90%;
+    width: 100%;
+}
+canvas
+{
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
 }
